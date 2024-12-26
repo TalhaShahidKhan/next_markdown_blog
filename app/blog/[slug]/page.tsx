@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import { getBlogContent } from '@/lib/getBlogContent'
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {
-  const { slug } = await params
+  const { slug } = params
 
   if (!slug) {
     notFound()
