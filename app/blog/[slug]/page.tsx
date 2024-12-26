@@ -1,7 +1,14 @@
 import { notFound } from 'next/navigation'
 import { getBlogContent } from '@/lib/getBlogContent'
 
-export default async function BlogPost({ params }: { params: { slug: string } }) {
+type BlogPostParams = {
+  params: {
+    slug: string
+  }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export default async function BlogPost({ params }: BlogPostParams) {
   const { slug } = params
 
   if (!slug) {
