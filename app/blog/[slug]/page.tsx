@@ -3,12 +3,12 @@ import { getBlogContent } from '@/lib/getBlogContent'
 
 type BlogPostParams = {
   params: {
-    slug: string | unknown
+    slug: string
   }
   searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export default async function BlogPost({ params }: BlogPostParams) {
+export default async function BlogPost({ params, searchParams }: BlogPostParams) {
   const { slug } = params
 
   if (!slug) {
