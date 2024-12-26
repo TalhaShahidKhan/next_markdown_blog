@@ -11,7 +11,7 @@ interface BlogPost {
   content: string;
 }
 
-export async function getBlogContent(slug: string): Promise<BlogPost | null> {
+export async function getBlogContent(slug: string | unknown): Promise<BlogPost | null> {
   const contentDir = path.join(process.cwd(), 'content')
   const files = fs.readdirSync(contentDir)
   

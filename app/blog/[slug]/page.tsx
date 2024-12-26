@@ -3,7 +3,7 @@ import { getBlogContent } from '@/lib/getBlogContent'
 
 type BlogPostParams = {
   params: {
-    slug: string
+    slug: string | unknown
   }
   searchParams: { [key: string]: string | string[] | undefined }
 }
