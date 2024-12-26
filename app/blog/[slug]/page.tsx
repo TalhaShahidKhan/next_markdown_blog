@@ -1,24 +1,23 @@
-import { notFound } from 'next/navigation'
-import { getBlogContent } from '@/lib/getBlogContent'
+import { notFound } from "next/navigation";
+import { getBlogContent } from "@/lib/getBlogContent";
 
-type BlogPostParams = {
-  params: {
-    slug: string
-  }
-  searchParams: { [key: string]: string | string[] | undefined }
-}
 
-export default async function BlogPost({ params, searchParams }: BlogPostParams) {
-  const { slug } = params
+
+export default async function BlogPost({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const slug = (await params).slug
 
   if (!slug) {
-    notFound()
+    notFound();
   }
 
-  const post = await getBlogContent(slug)
-  
+  const post = await getBlogContent(slug);
+
   if (!post) {
-    notFound()
+    notFound();
   }
 
   return (
@@ -34,8 +33,8 @@ export default async function BlogPost({ params, searchParams }: BlogPostParams)
               <time>{new Date(post.date).toLocaleDateString()}</time>
             </div>
           </header>
-          
-          <div 
+
+          <div
             className="dark:prose-invert max-w-none prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl
               prose-p:text-gray-700 dark:prose-p:text-gray-300
               prose-a:text-blue-600 hover:prose-a:text-blue-500 prose-code:p-4 
@@ -45,5 +44,5 @@ export default async function BlogPost({ params, searchParams }: BlogPostParams)
         </article>
       </main>
     </div>
-  )
+  );
 }
